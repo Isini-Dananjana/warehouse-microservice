@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: warehousems
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: warehousems
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: warehousems
+    spec:
+      containers:
+        - name:  warehousems-app
+          image: isinid/warehousems
+          ports:
+            - containerPort: 8090
+          resources:
+            requests:
+              cpu: 100m
+            limits:
+              cpu: 100m
