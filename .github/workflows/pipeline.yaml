@@ -1,0 +1,23 @@
+name: Build and deploy
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  DEPLOYMENT_NAME: warehousems
+
+
+jobs:
+  setup-build-publish:
+      name: Setup build and setup-build-publish
+      runs-on: ubuntu-latest
+      steps:
+        - run: echo "Build started "
+        - name: Checkout repository
+          uses: actions/checkout@v3
+        - run: echo "Project repository has been clonde to runnner(ubuntu)"
+
+
+   
