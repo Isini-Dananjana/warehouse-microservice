@@ -36,3 +36,15 @@ jobs:
          with:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.TOKEN }}
+          
+#BULD AND PUSH TO DCOCKER HUB
+
+        - name: Set up Docker Buildx
+          uses: docker/setup-buildx-action@v2
+        - name: Build and push
+          uses: docker/build-push-action@v3
+          with:
+           context: .
+           file: ./Dockerfile
+           push: true
+           tags: ${{ secrets.USERNAME }}/${{env.DEPLOYMENT_NAME}}:${{ github.sha }}
